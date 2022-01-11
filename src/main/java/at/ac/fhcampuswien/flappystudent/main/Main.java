@@ -67,7 +67,7 @@ public class Main extends Canvas implements Runnable {
 
         ground = new Ground();
 
-        bird = new Bird(50, 50, 51, 36);
+        bird = new Bird(250, 250, 51, 36);
 
         startButton = new Button(MainWindow.WIDTH / 2 - 156 / 2, 220, 156, 87, GraphicsLoader.loadGraphics("playbutton.png"));
     }
@@ -108,13 +108,13 @@ public class Main extends Canvas implements Runnable {
 
         g.drawString(current_score, MainWindow.WIDTH - 900 - scoreWidth, 40);
 
-        if(gameOver) {
+        if (gameOver) {
             String explanation = "Click to Restart!";
             int explanationWidth = g.getFontMetrics().stringWidth(explanation);
 
             g.drawString(explanation, MainWindow.WIDTH / 2 - explanationWidth / 2, 340);
 
-            if (highscore < score){
+            if (highscore < score) {
                 highscore = score;
             }
         }
@@ -125,7 +125,7 @@ public class Main extends Canvas implements Runnable {
         g.drawString(display_highscore, MainWindow.WIDTH - 50 - highscoreWidth, 40);
 
         // TODO: 07.01.2022: (BUG) Text wird zwar angezeigt und verschwindet auch wenn man SPACEBAR drückt, aber das Game beginnt trotzdem schon davor
-        if(!started){
+        if (!started) {
             String start_screen = "Press SPACEBAR to start!";
             int start_screenWidth = g.getFontMetrics().stringWidth(start_screen);
 
@@ -136,13 +136,14 @@ public class Main extends Canvas implements Runnable {
         bs.show();
     }
 
+
     // TODO: 05.01.2022: (LOGIK) Mathe Teil verstehen
     @Override
     public void run() {
         init();
         this.requestFocus();
 
-        if(!started){
+        while (!started) {
             render();
         }
 
