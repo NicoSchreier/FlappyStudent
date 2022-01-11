@@ -16,9 +16,8 @@ public class MainWindow extends JFrame {
         setResizable(false);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
 
-        setVisible(true);
-
         add(game);
+        setVisible(true);
         game.start();
     }
 }

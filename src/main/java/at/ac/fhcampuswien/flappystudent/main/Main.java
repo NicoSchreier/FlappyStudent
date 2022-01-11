@@ -33,14 +33,12 @@ public class Main extends Canvas implements Runnable {
 
     // TODO: (GENERELL & BUGS) 06.01.2022:
     //
-    // -> Eigene Grafiken einfügen! (Maße bitte mit mir (Nico Schreier) vorher besprechen!)
     // -> Einen Start Screen mit kurzer Erklärung einführen! (Statt SPACEBAR vielleicht ein Bild von einer SPACEBAR?)
     // -> Die Texte ("Score: X" oder "Click to Restart") grafisch verschönern!
     //              --> auf Hintergrund von Kalo warten
     //
     // Bekannte Bugs:
-    // - Grafikfehler beim Bild groundBIG beim Laden (alle 2000px / nach 2x Laden) - Kalo fixt das
-    // - Press SPACEBAR to start
+    // - Grafikfehler beim Bild Ground beim Laden (alle 2000px / nach 2x Laden - ca. 1px groß)
     //
     // -> WICHTIG: Ich werde in den kommenden Tagen versuchen alle Teile des Codes zu verstehen und mit Kommentaren zu versehen.
     //             Wir können gerne eine extra Besprechung ansetzen, wo wir alles in Ruhe nochmal durchgehen um Fragen zu klären!
@@ -63,7 +61,7 @@ public class Main extends Canvas implements Runnable {
         addMouseListener(new MouseHandler());
 
         img_gameOver = GraphicsLoader.loadGraphics("gameover.png");
-        background = GraphicsLoader.loadGraphics("backgroundBIG.png");
+        background = GraphicsLoader.loadGraphics("background_final.png");
 
         ground = new Ground();
 
@@ -101,7 +99,7 @@ public class Main extends Canvas implements Runnable {
         }
 
         g.setFont(new Font("Arial", Font.BOLD, 20));
-        g.setColor(Color.BLACK);
+        g.setColor(Color.WHITE);
 
         String current_score = "Score: " + score;
         int scoreWidth = g.getFontMetrics().stringWidth(current_score);
@@ -135,7 +133,6 @@ public class Main extends Canvas implements Runnable {
         g.dispose();
         bs.show();
     }
-
 
     // TODO: 05.01.2022: (LOGIK) Mathe Teil verstehen
     @Override

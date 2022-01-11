@@ -19,7 +19,7 @@ public class Ground {
 
         velX = 3;
 
-        image = GraphicsLoader.loadGraphics("groundBIG.png");
+        image = GraphicsLoader.loadGraphics("ground168_final.png");
     }
 
     public void tick() {
