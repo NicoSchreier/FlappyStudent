@@ -19,7 +19,7 @@ public class Ground {
 
         velX = 3;
 
-        image = GraphicsLoader.loadGraphics("ground168_final.png");
+        image = GraphicsLoader.loadGraphics("Ground168_kabel2.png");
     }
 
     public void tick() {

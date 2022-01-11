@@ -20,9 +20,9 @@ public class Tube extends GameObject {
         super(x, y, width, height);
 
         this.type = type;
-        this.velX = 3;
+        this.velX = 4;
 
-        tube = GraphicsLoader.loadGraphics("tube.png");
+        tube = GraphicsLoader.loadGraphics("tube_ram.png");
 
         if (type == TubeType.BOTTOM) {
             tubeBlock = GraphicsLoader.loadGraphics("tubebottomdown.png");
@@ -38,7 +38,7 @@ public class Tube extends GameObject {
         if (x + width < 0) {
             ObjectHandler.removeObject(this);
 
-            if (type == TubeType.TOP) {
+            if (type == TubeType.BOTTOM) {
                 Main.score += 1;
             }
         }

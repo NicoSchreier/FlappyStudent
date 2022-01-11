@@ -29,7 +29,7 @@ public class Main extends Canvas implements Runnable {
     public static int score;
     public int highscore;
 
-    Thread thread;
+    public static Thread thread;
 
     // TODO: (GENERELL & BUGS) 06.01.2022:
     //
@@ -47,13 +47,19 @@ public class Main extends Canvas implements Runnable {
         new MainWindow(new Main());
     }
 
-    // TODO: 05.01.2022: (LOGIK) synchronized recherchieren
     public synchronized void start() {
         running = true;
         started = false;
-        thread = new Thread(this);
-        thread.start();
-        run();
+        thread = new Thread(() -> {
+            while (running){
+               run();
+               try{
+                   Thread.sleep(15);
+               }catch (InterruptedException e) {
+                   System.out.println("Error 1");
+               }
+           }
+        });
     }
 
     public void init() {
@@ -154,7 +160,6 @@ public class Main extends Canvas implements Runnable {
             long now = System.nanoTime();
             delta += (now - pastTime) / ns;
             pastTime = now;
-
             while (delta > 0) {
                 tick();
                 render();

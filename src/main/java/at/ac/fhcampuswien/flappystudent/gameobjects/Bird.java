@@ -26,7 +26,7 @@ public class Bird extends GameObject {
         BufferedImage[] images = new BufferedImage[3];
 
         for (int i = 0; i < images.length; i++) {
-            images[i] = GraphicsLoader.loadGraphics("bird" + i + ".png");
+            images[i] = GraphicsLoader.loadGraphics("Bird" + i + ".png");
         }
 
         animation = new Animation(this, 100, true, images);
