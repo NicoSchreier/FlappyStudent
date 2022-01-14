@@ -82,8 +82,8 @@ public class Main extends Canvas implements Runnable {
         g.setFont(new Font("Arial", Font.BOLD, 20));
         g.setColor(new Color(250, 247, 247, 178));
 
-        g.drawRect(10,19,105,28);
-        g.fillRect(10, 19, 105,28);
+        g.drawRect(22,19,105,28);
+        g.fillRect(22, 19, 105,28);
 
         g.drawRect(815, 19, 150, 30);
         g.fillRect(815, 19, 150,30);
@@ -91,9 +91,7 @@ public class Main extends Canvas implements Runnable {
         g.setColor(new Color(61, 61, 61,250));
 
         String current_score = "Score: " + score;
-        int scoreWidth = g.getFontMetrics().stringWidth(current_score);
-
-        g.drawString(current_score, MainWindow.WIDTH - 900 - scoreWidth, 40);
+        g.drawString(current_score, MainWindow.WIDTH - 975, 40);
 
         if (gameOver) {
             Main.gameover.render(g);
@@ -103,9 +101,8 @@ public class Main extends Canvas implements Runnable {
         }
 
         String display_highscore = "Highscore: " + highscore;
-        int highscoreWidth = g.getFontMetrics().stringWidth(display_highscore);
 
-        g.drawString(display_highscore, MainWindow.WIDTH - 50 - highscoreWidth, 40);
+        g.drawString(display_highscore, MainWindow.WIDTH - 180, 40);
 
         if (!started) {
             g.drawImage(start_screen, MainWindow.WIDTH / 2 - 250, 50, null);
