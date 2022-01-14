@@ -14,17 +14,18 @@ public class MouseHandler implements MouseListener {
 
     @Override
     public void mousePressed(MouseEvent e) {
-        if (Button.checkCollision(e.getX(), e.getY(), Main.startButton)) {
+        if (Button.checkCollision(e.getX(), e.getY(), Main.gameover)) {
             if (Main.gameOver) {
-                Main.startButton.pressed = true;
+                Main.gameover.pressed = true;
                 ObjectHandler.list.clear();
                 ObjectHandler.addObject(Main.bird);
                 Main.gameOver = false;
                 Main.score = 0;
-                Main.startButton.pressed = false;
+                Main.gameover.pressed = false;
             }
         }
         Main.bird.setVelY(-5);
+        Main.started = true;
     }
 
     @Override

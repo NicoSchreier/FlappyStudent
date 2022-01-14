@@ -20,14 +20,13 @@ public class Tube extends GameObject {
         super(x, y, width, height);
 
         this.type = type;
-        this.velX = 4;
-
-        tube = GraphicsLoader.loadGraphics("tube_ram.png");
+        this.velX = 5;
+        tube = GraphicsLoader.loadGraphics("Tube_ram.png");
 
         if (type == TubeType.BOTTOM) {
-            tubeBlock = GraphicsLoader.loadGraphics("tubebottomdown.png");
+            tubeBlock = GraphicsLoader.loadGraphics("Tube_topping.png");
         } else if (type == TubeType.TOP) {
-            tubeBlock = GraphicsLoader.loadGraphics("tubebottomtop.png");
+            tubeBlock = GraphicsLoader.loadGraphics("Tube_topping.png");
         }
     }
 
@@ -35,12 +34,12 @@ public class Tube extends GameObject {
     public void tick() {
         x -= velX;
 
+        if (this.x == Main.bird.getX() && type == TubeType.TOP) {
+            Main.score++;
+        }
+
         if (x + width < 0) {
             ObjectHandler.removeObject(this);
-
-            if (type == TubeType.BOTTOM) {
-                Main.score += 1;
-            }
         }
     }
 

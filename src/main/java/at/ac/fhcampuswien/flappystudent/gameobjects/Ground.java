@@ -17,9 +17,9 @@ public class Ground {
         x1 = 0;
         x2 = MainWindow.WIDTH;
 
-        velX = 3;
+        velX = 5;
 
-        image = GraphicsLoader.loadGraphics("Ground168_kabel2.png");
+        image = GraphicsLoader.loadGraphics("Ground.png");
     }
 
     public void tick() {
@@ -27,11 +27,11 @@ public class Ground {
         x1 -= velX;
         x2 -= velX;
 
-        if (x1 + MainWindow.WIDTH < 0) {
+        if (x1 + MainWindow.WIDTH <= 0) {
             x1 = MainWindow.WIDTH;
         }
 
-        if (x2 + MainWindow.WIDTH < 0) {
+        if (x2 + MainWindow.WIDTH <= 0) {
             x2 = MainWindow.WIDTH;
         }
     }

@@ -19,6 +19,5 @@ public class MainWindow extends JFrame {
         add(game);
         setVisible(true);
         game.start();
-        Main.thread.start();
     }
 }

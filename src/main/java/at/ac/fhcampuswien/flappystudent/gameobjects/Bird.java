@@ -9,10 +9,13 @@ import at.ac.fhcampuswien.flappystudent.supers.GameObject;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;
+import java.util.TimerTask;
+import java.util.Timer;
 
 public class Bird extends GameObject {
 
     Animation animation;
+
 
     public float gravity;
     public float maxSpeed;
@@ -62,9 +65,61 @@ public class Bird extends GameObject {
         for (int i = 0; i < ObjectHandler.list.size(); i++) {
             gameObject = ObjectHandler.list.get(i);
 
-            if (gameObject instanceof Tube) {
+            if (gameObject instanceof PowerUps) {
                 if (this.getBounds().intersects(gameObject.getBounds())) {
-                    Main.gameOver = true;
+                    Main.powerUpActive = true;
+
+                    new Timer().schedule(new TimerTask() {
+                        @Override
+                        public void run() {
+                                System.out.println("5 seconds remaining");
+                        }
+                    }, 0);
+
+                    new Timer().schedule(new TimerTask() {
+                        @Override
+                        public void run() {
+                                System.out.println("4 seconds remaining");
+                        }
+                    }, 1000);
+
+                    new Timer().schedule(new TimerTask() {
+                        @Override
+                        public void run() {
+                            System.out.println("3 seconds remaining");
+                        }
+                    }, 2000);
+
+                    new Timer().schedule(new TimerTask() {
+                        @Override
+                        public void run() {
+                                System.out.println("2 seconds remaining");
+
+                        }
+                    }, 3000);
+
+                    new Timer().schedule(new TimerTask() {
+                        @Override
+                        public void run() {
+                                System.out.println("1 seconds remaining");
+                        }
+                    }, 4000);
+
+                    new Timer().schedule(new TimerTask() {
+                        @Override
+                        public void run() {
+                            Main.powerUpActive = false;
+                            System.out.println("Time is up, back to normal! Take care!");
+                        }
+                    }, 5000);
+                }
+            }
+
+            if (!Main.powerUpActive) {
+                if (gameObject instanceof Tube) {
+                    if (this.getBounds().intersects(gameObject.getBounds())) {
+                        Main.gameOver = true;
+                    }
                 }
             }
         }
