@@ -16,10 +16,10 @@ public class Bird extends GameObject {
 
     Animation animation;
 
+    private final float gravity;
+    private final float maxSpeed;
 
-    public float gravity;
-    public float maxSpeed;
-
+    // Der Konstruktor, der in der Main Klasse in init() aufgerufen wird
     public Bird(int x, int y, int width, int height) {
         super(x, y, width, height);
 
@@ -28,6 +28,8 @@ public class Bird extends GameObject {
 
         BufferedImage[] images = new BufferedImage[3];
 
+        // Wir haben 3 verschieden Bilder von unserem Birdy (wenn man es schnell abspielt, sieht es so aus als würde er die Flügel verwenden um zu fliegen)
+        // Hier wird sichergestellt, dass die Bilder richtig geladen werden.
         for (int i = 0; i < images.length; i++) {
             images[i] = GraphicsLoader.loadGraphics("Bird" + i + ".png");
         }
@@ -38,6 +40,7 @@ public class Bird extends GameObject {
         ObjectHandler.addObject(this);
     }
 
+    // Tickt permanent mit, um den Spielstatus zu überprüfen und dementsprechend zu handeln
     @Override
     public void tick() {
 
@@ -62,9 +65,11 @@ public class Bird extends GameObject {
 
         GameObject gameObject;
 
+        // läuft so lange, wie in der LinkedList Objekte sind (also quasi bis die Liste in MouseHandler gecleared wird)
         for (int i = 0; i < ObjectHandler.list.size(); i++) {
             gameObject = ObjectHandler.list.get(i);
 
+            // hier wird überprüft, ob das GameObject Bird mit einem PowerUp kollidiert und was dann passieren soll
             if (gameObject instanceof PowerUps) {
                 if (this.getBounds().intersects(gameObject.getBounds())) {
                     Main.powerUpActive = true;
@@ -72,53 +77,18 @@ public class Bird extends GameObject {
                     new Timer().schedule(new TimerTask() {
                         @Override
                         public void run() {
-                                System.out.println("5 seconds remaining");
-                        }
-                    }, 0);
-
-                    new Timer().schedule(new TimerTask() {
-                        @Override
-                        public void run() {
-                                System.out.println("4 seconds remaining");
-                        }
-                    }, 1000);
-
-                    new Timer().schedule(new TimerTask() {
-                        @Override
-                        public void run() {
-                            System.out.println("3 seconds remaining");
-                        }
-                    }, 2000);
-
-                    new Timer().schedule(new TimerTask() {
-                        @Override
-                        public void run() {
-                                System.out.println("2 seconds remaining");
-
-                        }
-                    }, 3000);
-
-                    new Timer().schedule(new TimerTask() {
-                        @Override
-                        public void run() {
-                                System.out.println("1 seconds remaining");
-                        }
-                    }, 4000);
-
-                    new Timer().schedule(new TimerTask() {
-                        @Override
-                        public void run() {
-                            Main.powerUpActive = false;
                             System.out.println("Time is up, back to normal! Take care!");
+                            Main.powerUpActive = false;
                         }
                     }, 5000);
                 }
             }
 
+            // hier wird überprüft, ob das GameObject Bird mit einer Tube kollidiert und was dann passieren soll
             if (!Main.powerUpActive) {
                 if (gameObject instanceof Tube) {
                     if (this.getBounds().intersects(gameObject.getBounds())) {
-                        Main.gameOver = true;
+                       Main.gameOver = true;
                     }
                 }
             }
@@ -126,6 +96,7 @@ public class Bird extends GameObject {
         animation.tick();
     }
 
+    // rendert die Animation des Vogels
     @Override
     public void render(Graphics g) {
         animation.render(g);

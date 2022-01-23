@@ -13,6 +13,7 @@ public class Ground {
 
     private float velX;
 
+    // Der Konstruktor, der in der Main Klasse in init() aufgerufen wird
     public Ground() {
         x1 = 0;
         x2 = MainWindow.WIDTH;
@@ -22,6 +23,7 @@ public class Ground {
         image = GraphicsLoader.loadGraphics("Ground.png");
     }
 
+    // Tickt permanent mit, um den Spielstatus zu überprüfen und dementsprechend zu handeln
     public void tick() {
 
         x1 -= velX;
@@ -36,6 +38,7 @@ public class Ground {
         }
     }
 
+    // rendert den Boden
     public void render(Graphics g) {
         g.drawImage(image, x1, MainWindow.HEIGHT - 168, null);
         g.drawImage(image, x2, MainWindow.HEIGHT - 168, null);

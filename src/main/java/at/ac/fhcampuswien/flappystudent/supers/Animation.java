@@ -18,6 +18,7 @@ public class Animation {
     private GameObject target;
     private BufferedImage[] images;
 
+    // Der Konstruktor, der in der Bird Klasse aufgerufen wird, um die Animation für den Birdy zu sichern
     public Animation(GameObject target, long delay, boolean loop, BufferedImage[] images) {
         this.x = target.getX();
         this.y = target.getY();
@@ -29,6 +30,7 @@ public class Animation {
         this.images = images;
     }
 
+    // rendert unseren Birdy
     public void render(Graphics g) {
         if (target == null) {
             g.drawImage(images[currentImage], x, y, null);
@@ -37,6 +39,7 @@ public class Animation {
         }
     }
 
+    // tickt in der tick() Methode in der Klasse Bird auch mit
     public void tick() {
         long pastTime = (System.nanoTime() - startTime) / 1000000;
 
@@ -54,18 +57,21 @@ public class Animation {
         }
     }
 
+    // startet die Animation
     public void start() {
         this.running = true;
         this.currentImage = 0;
         this.startTime = 0;
     }
 
+    // stoppt die Animation
     public void stop() {
         this.running = false;
         this.currentImage = 0;
         this.startTime = 0;
     }
 
+    // setzt das Target (das GameObject ist hier gemeint)
     public void setTarget(GameObject target) {
         this.target = target;
     }

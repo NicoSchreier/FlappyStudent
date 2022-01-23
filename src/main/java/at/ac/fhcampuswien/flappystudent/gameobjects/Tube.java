@@ -16,6 +16,7 @@ public class Tube extends GameObject {
     BufferedImage tubeBlock;
     BufferedImage tube;
 
+    // Der Konstruktor, der in der TubeHandler Klasse in spawnTube() aufgerufen wird
     public Tube(int x, int y, int width, int height, TubeType type) {
         super(x, y, width, height);
 
@@ -30,12 +31,20 @@ public class Tube extends GameObject {
         }
     }
 
+    // Tickt permanent mit, um den Spielstatus zu überprüfen und dementsprechend zu handeln
     @Override
     public void tick() {
         x -= velX;
 
+        // hier wird abgefragt, ob der Bird durch den Tube durch ist, oder nicht
         if (this.x == Main.bird.getX() && type == TubeType.TOP) {
             Main.score++;
+        }
+
+        // hier werden die GameObjects (Tubes) wieder entfernt, wenn sie einen gewissen Punkt passieren
+        // TODO: 23.01.2022: Hier meinte Strommer glaube ich, dass der Fehler mit dem verschieben der Tubes liegt?
+        if (x + width < 0) {
+            ObjectHandler.removeObject(this);
         }
 
         if (x + width < 0) {
@@ -43,6 +52,7 @@ public class Tube extends GameObject {
         }
     }
 
+    // rendert die Tubes
     @Override
     public void render(Graphics g) {
         if (type == TubeType.BOTTOM) {

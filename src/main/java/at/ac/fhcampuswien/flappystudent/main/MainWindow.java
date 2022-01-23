@@ -6,8 +6,8 @@ public class MainWindow extends JFrame {
 
     public static final int WIDTH = 1000, HEIGHT = 600;
 
+    // Der Konstruktor, der in der main Methode der Main Klasse aufgerufen wird
     public MainWindow(Main game) {
-
         pack();
         setTitle("Flappy Student");
         setSize(WIDTH, HEIGHT);

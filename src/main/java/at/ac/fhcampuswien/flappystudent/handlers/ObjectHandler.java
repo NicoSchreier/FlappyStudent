@@ -9,14 +9,17 @@ public class ObjectHandler {
 
     public static LinkedList<GameObject> list = new LinkedList<>();
 
+    // fügt Objekte der LinkedList hinzu
     public static void addObject(GameObject go) {
         list.add(go);
     }
 
+    // entfernt Objekte der LinkedList
     public static void removeObject(GameObject go) {
         list.remove(go);
     }
 
+    // rendert alle GameObjects (Bird, PowerUps, Tubes)
     public static void render(Graphics g) {
         GameObject gameOb;
 
@@ -26,6 +29,7 @@ public class ObjectHandler {
         }
     }
 
+    // tickt für alle GameObjects (Bird, PowerUps, Tubes)
     public static void tick() {
         GameObject gameOb;
 

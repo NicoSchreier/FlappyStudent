@@ -18,6 +18,7 @@ public class TubeHandler {
     public static int delay = 1;
     public static int now;
 
+    // Ist für das spawnen von Tubes zuständig (vor allem wo sie spawnen sollen)
     public static void spawnTube() {
         int heightTop = random.nextInt(maxSize) + 1;
 
@@ -34,6 +35,7 @@ public class TubeHandler {
         ObjectHandler.addObject(tubeBottom);
     }
 
+    // Tickt permanent mit, um PowerUps zum richtigen Zeitpunkt zu spawnen
     public static void tick() {
         if (now < delay) {
             now++;

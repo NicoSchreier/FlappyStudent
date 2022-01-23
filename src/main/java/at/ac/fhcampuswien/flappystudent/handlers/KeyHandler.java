@@ -7,10 +7,7 @@ import java.awt.event.KeyListener;
 
 public class KeyHandler implements KeyListener {
 
-    @Override
-    public void keyTyped(KeyEvent e) {
-    }
-
+    // Hier wird abgerufen, was passieren soll, wenn man SPACEBAR drückt
     @Override
     public void keyPressed(KeyEvent e) {
         if (e.getKeyCode() == KeyEvent.VK_SPACE) {
@@ -19,7 +16,14 @@ public class KeyHandler implements KeyListener {
         }
     }
 
+    // wurde nur importiert, da es eine Methode des Interface KeyListener ist
+    @Override
+    public void keyTyped(KeyEvent e) {
+    }
+
+    // wurde nur importiert, da es eine Methode des Interface KeyListener ist
     @Override
     public void keyReleased(KeyEvent e) {
+
     }
 }

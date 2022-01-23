@@ -6,6 +6,7 @@ import java.io.IOException;
 
 public class GraphicsLoader {
 
+    // mit der Methode ist der Prozess, ein Bild aus dem resources Ordner zu laden, vereinfacht.
     public static BufferedImage loadGraphics(String path) {
         BufferedImage image = null;
 

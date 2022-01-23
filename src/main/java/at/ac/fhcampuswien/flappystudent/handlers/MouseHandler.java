@@ -8,10 +8,7 @@ import java.awt.event.MouseListener;
 
 public class MouseHandler implements MouseListener {
 
-    @Override
-    public void mouseClicked(MouseEvent e) {
-    }
-
+    // Hier wird abgerufen, was passieren soll, wenn man mit der Maus klickt (egal mit welcher Taste auf der Maus)
     @Override
     public void mousePressed(MouseEvent e) {
         if (Button.checkCollision(e.getX(), e.getY(), Main.gameover)) {
@@ -28,14 +25,22 @@ public class MouseHandler implements MouseListener {
         Main.started = true;
     }
 
+    // wurde nur importiert, da es eine Methode des Interface MouseListener ist
+    @Override
+    public void mouseClicked(MouseEvent e) {
+    }
+
+    // wurde nur importiert, da es eine Methode des Interface MouseListener ist
     @Override
     public void mouseReleased(MouseEvent e) {
     }
 
+    // wurde nur importiert, da es eine Methode des Interface MouseListener ist
     @Override
     public void mouseEntered(MouseEvent e) {
     }
 
+    // wurde nur importiert, da es eine Methode des Interface MouseListener ist
     @Override
     public void mouseExited(MouseEvent e) {
     }

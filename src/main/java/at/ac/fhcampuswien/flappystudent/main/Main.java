@@ -19,6 +19,7 @@ public class Main extends Canvas implements Runnable {
 
     public static BufferedImage background;
     public static BufferedImage start_screen;
+    public static BufferedImage shield;
 
     public static Button gameover;
     public static Ground ground;
@@ -29,10 +30,12 @@ public class Main extends Canvas implements Runnable {
 
     Thread thread;
 
+    // Main Methode: Hier wird ein neues Window aufgerufen
     public static void main(String[] args) {
         new MainWindow(new Main());
     }
 
+    // Nachdem in MainWindow die wichtigsten Parameter festgelegt worden sind, wird hier der Prozess selber gestartet. Synchronized, um die Methode zu schützen
     public synchronized void start() {
         running = true;
         started = false;
@@ -41,6 +44,7 @@ public class Main extends Canvas implements Runnable {
         run();
     }
 
+    // init steht für initialisieren. In unserem Fall werden also hier Listener und Bilder initialisiert
     public void init() {
         addKeyListener(new KeyHandler());
         addMouseListener(new MouseHandler());
@@ -54,15 +58,11 @@ public class Main extends Canvas implements Runnable {
         start_screen = GraphicsLoader.loadGraphics("Start.png");
 
         gameover = new Button(MainWindow.WIDTH / 2 - 288 / 2, 130, 300, 230, GraphicsLoader.loadGraphics("Gameover.png"));
+
+        shield = GraphicsLoader.loadGraphics("Shield.png");
     }
 
-    public void tick() {
-        if (!gameOver) {
-            ObjectHandler.tick();
-            ground.tick();
-        }
-    }
-
+    // Hier werden dann die ganzen Bilder, Texte, usw gerendert und angepasst.
     public void render() {
         BufferStrategy bs = this.getBufferStrategy();
 
@@ -82,9 +82,11 @@ public class Main extends Canvas implements Runnable {
         g.setFont(new Font("Arial", Font.BOLD, 20));
         g.setColor(new Color(250, 247, 247, 178));
 
+        // für "Score: X"
         g.drawRect(22,19,105,28);
         g.fillRect(22, 19, 105,28);
 
+        // für "Highscore: Y"
         g.drawRect(815, 19, 150, 30);
         g.fillRect(815, 19, 150,30);
 
@@ -108,10 +110,24 @@ public class Main extends Canvas implements Runnable {
             g.drawImage(start_screen, MainWindow.WIDTH / 2 - 250, 50, null);
         }
 
+        if(powerUpActive){
+            g.drawRect(450,19,41,40);
+            g.drawImage(shield, 451, 19, null);
+        }
+
         g.dispose();
         bs.show();
     }
 
+    // Tickt permanent mit, um den Spielstatus zu überprüfen und dementsprechend zu handeln
+    public void tick() {
+        if (!gameOver) {
+            ObjectHandler.tick();
+            ground.tick();
+        }
+    }
+
+    // Run ist für den generellen Spielablauf zuständig
     @Override
     public void run() {
         init();
